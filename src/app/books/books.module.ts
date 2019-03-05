@@ -9,8 +9,6 @@ import { BookPreviewComponent } from './book-preview/book-preview.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { PagesPipe } from './shared/pages.pipe';
 import { OrderBtnDirective } from './shared/order-btn.directive';
-import { BookEditComponent } from './book-edit/book-edit.component';
-import { BookNewComponent } from './book-new/book-new.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +17,7 @@ import { BookNewComponent } from './book-new/book-new.component';
     BookPreviewComponent,
     BookDetailsComponent,
     PagesPipe,
-    OrderBtnDirective,
-    BookEditComponent,
-    BookNewComponent
+    OrderBtnDirective
   ],
   imports: [CommonModule, BooksRoutingModule, FormsModule, ReactiveFormsModule]
 })

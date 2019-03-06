@@ -18,7 +18,7 @@ export class BookListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {}
   selectBook(b: IBook) {
-    this.router.navigate([b.isbn, 'hans', 'petra'], { relativeTo: this.route });
+    this.router.navigate([b.isbn], { relativeTo: this.route });
   }
   ngOnInit() {
     this.sub.add(this.service.getBooks().subscribe(b => (this.books = b)));

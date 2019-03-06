@@ -19,4 +19,8 @@ export class BookService {
     const url = `${this.restRoot}/${isbn}`;
     return this.http.get<IBook>(url);
   }
+  updateBook(book: IBook) {
+    const url = `${this.restRoot}/${book.isbn}`;
+    return this.http.put<IBook>(url, book);
+  }
 }

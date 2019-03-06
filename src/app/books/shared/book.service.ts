@@ -23,4 +23,8 @@ export class BookService {
     const url = `${this.restRoot}/${book.isbn}`;
     return this.http.put<IBook>(url, book);
   }
+  createBook(book: IBook) {
+    const url = `${this.restRoot}`;
+    return this.http.post<IBook>(url, book);
+  }
 }

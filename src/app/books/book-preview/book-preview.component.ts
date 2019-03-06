@@ -1,14 +1,33 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  AfterViewChecked,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { IBook } from '../shared/costum-types';
 
 @Component({
   selector: 'app-book-preview',
   templateUrl: './book-preview.component.html',
-  styleUrls: ['./book-preview.component.scss']
+  styleUrls: ['./book-preview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BookPreviewComponent implements OnInit {
+export class BookPreviewComponent
+  implements OnInit, OnChanges, AfterViewChecked {
   @Input() book: IBook;
+  @Input() trigger: number;
   @Output() bookselected = new EventEmitter<IBook>();
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.book.title);
+  }
+  ngAfterViewChecked(): void {
+    // console.log(this.book.title);
+  }
   constructor() {}
 
   ngOnInit() {}

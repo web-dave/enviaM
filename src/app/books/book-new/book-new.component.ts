@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class BookNewComponent implements OnInit {
   form: FormGroup;
+  saved = false;
   constructor(
     private formBuilder: FormBuilder,
     private service: BookService,
@@ -41,10 +42,13 @@ export class BookNewComponent implements OnInit {
       ...book,
       ...this.form.value
     };
-    this.service
-      .createBook(newBook)
-      .subscribe(b =>
-        this.router.navigate(['..', b.isbn], { relativeTo: this.route })
-      );
+    this.service.createBook(newBook).subscribe(b => {
+      this.saved = true;
+      this.router.navigate(['..', b.isbn], { relativeTo: this.route });
+    });
+  }
+
+  isSaved() {
+    return this.saved || !this.form.dirty;
   }
 }

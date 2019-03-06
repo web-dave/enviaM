@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { delay } from 'rxjs/operators';
 import { IBook } from './costum-types';
+import { Book } from './Book.class';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +26,8 @@ export class BookService {
   createBook(book: IBook) {
     const url = `${this.restRoot}`;
     return this.http.post<IBook>(url, book);
+  }
+  getNewBook(): IBook {
+    return new Book();
   }
 }

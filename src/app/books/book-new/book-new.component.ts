@@ -35,8 +35,14 @@ export class BookNewComponent implements OnInit {
   }
 
   saveBook() {
+    const book = this.service.getNewBook();
+    console.log(book);
+    const newBook = {
+      ...book,
+      ...this.form.value
+    };
     this.service
-      .createBook(this.form.value)
+      .createBook(newBook)
       .subscribe(b =>
         this.router.navigate(['..', b.isbn], { relativeTo: this.route })
       );

@@ -15,7 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class BookListComponent implements OnInit, OnDestroy, AfterViewChecked {
   books: IBook[];
@@ -52,7 +52,7 @@ export class BookListComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
   changeBook() {
     // this.cdr.detectChanges();
-    this.books[7].numPages++;
+    this.books[0].numPages++;
   }
   isSaved() {
     console.log('Book.List');

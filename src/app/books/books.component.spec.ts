@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BooksComponent } from './books.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BooksComponent', () => {
   let component: BooksComponent;
@@ -8,9 +9,9 @@ describe('BooksComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BooksComponent ]
-    })
-    .compileComponents();
+      declarations: [BooksComponent],
+      imports: [RouterTestingModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +22,10 @@ describe('BooksComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show a welcome message', () => {
+    const compiled: HTMLElement = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h2').innerText).toBe('Welcome to Books!');
   });
 });

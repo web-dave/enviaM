@@ -1,12 +1,38 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
 import { BookService } from './book.service';
+import {
+  HttpClientTestingModule,
+  HttpTestingController
+} from '@angular/common/http/testing';
+import { books } from 'TestMocks/books.mock';
 
-describe('BookService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+fdescribe('BookService', () => {
+  let service: BookService;
+  let backEnd: HttpTestingController;
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    })
+  );
+  beforeEach(() => {
+    service = TestBed.get(BookService);
+    backEnd = TestBed.get(HttpTestingController);
+  });
+  afterEach(() => {
+    backEnd.verify();
+  });
 
   it('should be created', () => {
-    const service: BookService = TestBed.get(BookService);
     expect(service).toBeTruthy();
+  });
+  it('getBooks should return Books', done => {
+    service.getBooks().subscribe(b => {
+      expect(b).toEqual(books);
+      done();
+    });
+    const req = backEnd.expectOne(service.restRoot);
+    expect(req.request.method).toBe('GET');
+    req.flush(books);
   });
 });

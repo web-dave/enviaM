@@ -15,7 +15,7 @@ import { IBook } from '../shared/costum-types';
   selector: 'app-book-preview',
   templateUrl: './book-preview.component.html',
   styleUrls: ['./book-preview.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class BookPreviewComponent
   implements OnInit, OnChanges, AfterViewChecked {

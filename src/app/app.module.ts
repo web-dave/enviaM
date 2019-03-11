@@ -11,18 +11,7 @@ import { FooInterceptor } from './foo.interceptor';
 @NgModule({
   declarations: [AppComponent, MyNavComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: FooInterceptor,
-      multi: true
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

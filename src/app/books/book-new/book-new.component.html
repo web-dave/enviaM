@@ -39,3 +39,4 @@
   <button type="submit" [disabled]="form.invalid">Save</button>
 </form>
 <a routerLink=".." class="btn btn-danger">X</a>
+<pre>{{ form.get('title').errors.postcode | json }}</pre>

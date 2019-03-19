@@ -22,15 +22,12 @@ export class BookNewComponent implements OnInit {
     this.form = this.formBuilder.group({
       title: [
         '',
-        Validators.compose([Validators.required, Validators.minLength(6)])
+        [Validators.required, postcodeValidator, Validators.minLength(6)]
       ],
-      isbn: [
-        '',
-        Validators.compose([Validators.required, Validators.minLength(6)])
-      ],
+      isbn: ['', [Validators.required, Validators.minLength(6)]],
       publisher: this.formBuilder.group({
-        name: ['', Validators.required],
-        url: ['', Validators.required]
+        name: ['', [postcodeValidator]],
+        url: ['', [Validators.required]]
       })
     });
   }
@@ -51,4 +48,14 @@ export class BookNewComponent implements OnInit {
   isSaved() {
     return this.saved || !this.form.dirty;
   }
+}
+
+import { ValidatorFn, AbstractControl } from '@angular/forms';
+export function postcodeValidator(): ValidatorFn {
+  return (control: AbstractControl): { postcode: any } | null => {
+    const pcRegEx = /^([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{3}$/;
+    return pcRegEx.test(control.value)
+      ? { postcode: { value: control.value } }
+      : null;
+  };
 }

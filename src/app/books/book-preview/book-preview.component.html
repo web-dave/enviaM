@@ -5,6 +5,7 @@
     <button (click)="selectThisBook()" class="btn btn-info">
       show me more
     </button>
+    <a [routerLink]="[book.title]">title</a>
   </li>
   <li>{{ book.numPages }}</li>
 </ul>
